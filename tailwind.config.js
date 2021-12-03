@@ -8,6 +8,14 @@ module.exports = {
         extend: {
             fontFamily: {
                 sans: ["Poppins", ...defaultTheme.fontFamily.sans]
+            },
+            width: {
+                "board": "40rem",
+                "box": "4.375rem",
+            },
+            height: {
+                "board": "35rem",
+                "box": "4.375rem",
             }
         },
     },
