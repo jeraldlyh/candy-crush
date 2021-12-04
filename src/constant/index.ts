@@ -17,3 +17,7 @@ export const CANDY_COLORS: object[] = [
     { "purple": PurpleCandy },
     { "blank": Blank },
 ]
+
+export const getBlank = () => {
+    return CANDY_COLORS[CANDY_COLORS.length - 1]
+}

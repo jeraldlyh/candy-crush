@@ -1,4 +1,4 @@
-import { BOARD_SIZE } from "./board"
+import { BOARD_SIZE, CANDY_COLORS, getBlank } from "../constant"
 
 /**
  * Checks for candies that are chained consecutively
@@ -82,7 +82,7 @@ const validate = (board: object[], index: number, rowColumn: number[]): boolean 
     const color = board[index]
 
     if (rowColumn.every(square => board[square] === color)) {
-        rowColumn.forEach(square => board[square] = {})         // TODO: Do something
+        rowColumn.forEach(square => board[square] = getBlank())
         return true
     }
     return false

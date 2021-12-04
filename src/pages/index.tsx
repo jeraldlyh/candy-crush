@@ -36,21 +36,24 @@ const Home: NextPage = () => {
                 {
                     board && board.length !== 0
                         ? board.map((candyColor, index) => {
-                            console.log(candyColor)
-                            return <Image
-                                src={Object.values(candyColor)[0]}
-                                key={index}
-                                className="w-box h-box border border-black"
-                                data-id={index}
-                                draggable={true}
-                                onDragOver={e => e.preventDefault()}
-                                onDragEnter={e => e.preventDefault()}
-                                onDragLeave={e => e.preventDefault()}
-                                onDragStart={e => dragStart(e, setCurrentSquare)}
-                                onDrop={e => dragDrop(e, setReplacedSquare)}
-                                onDragEnd={e => dragEnd(e, currentSquare, replacedSquare, board, setCurrentSquare, setReplacedSquare, setBoard)}       // Logic goes into here
-                                alt={Object.keys(candyColor)[0]}
-                            />
+                            return (
+                                <div key={index} className="w-box h-box relative">
+                                    <Image
+                                        src={Object.values(candyColor)[0]}
+                                        key={index}
+                                        layout="fill"
+                                        data-id={index}
+                                        draggable={true}
+                                        onDragOver={e => e.preventDefault()}
+                                        onDragEnter={e => e.preventDefault()}
+                                        onDragLeave={e => e.preventDefault()}
+                                        onDragStart={e => dragStart(e, setCurrentSquare)}
+                                        onDrop={e => dragDrop(e, setReplacedSquare)}
+                                        onDragEnd={e => dragEnd(e, currentSquare, replacedSquare, board, setCurrentSquare, setReplacedSquare, setBoard)}       // Logic goes into here
+                                        alt={Object.keys(candyColor)[0]}
+                                    />
+                                </div>
+                            )
                         })
                         : "idk"
                 }

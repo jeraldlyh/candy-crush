@@ -1,4 +1,4 @@
-import { BOARD_SIZE, CANDY_COLORS } from "../constant"
+import { BOARD_SIZE, CANDY_COLORS, getBlank } from "../constant"
 
 
 export const createBoard = (): object[] => {
@@ -10,7 +10,6 @@ export const createBoard = (): object[] => {
     return randomBoard
 }
 
-
 export const moveCandiesDown = (board: object[]): void => {
     const endIndex = BOARD_SIZE * BOARD_SIZE - BOARD_SIZE       // Prevent ArrayOutOfBounds from accessing beyond last row
 
@@ -21,7 +20,7 @@ export const moveCandiesDown = (board: object[]): void => {
 
         if (isCurrentSquareEmpty(board, i + BOARD_SIZE)) {
             board[i + BOARD_SIZE] = board[i]
-            board[i] = {}
+            board[i] = getBlank()
         }
     }
 }
@@ -32,11 +31,10 @@ const generateCandies = (board: object[], index: number): void => {
     if (firstRowIndices.includes(index) && isCurrentSquareEmpty(board, index)) {
         board[index] = getRandomColor()
     }
-
 }
 
 const isCurrentSquareEmpty = (board: object[], index: number): boolean => {
-    return Object.keys(board[index]).length === 0
+    return board[index] === getBlank()
 }
 
 const getRandomColor = (): object => {

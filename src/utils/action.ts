@@ -2,6 +2,7 @@ import React from "react"
 import { BOARD_SIZE } from "../constant"
 import { checkForLinkedCandies } from "./validate"
 
+
 export const dragDrop = (e: React.DragEvent<HTMLImageElement>, setReplacedSquare: React.Dispatch<React.SetStateAction<HTMLImageElement | undefined>>): void => {
     setReplacedSquare(e.target as HTMLImageElement)
 }
