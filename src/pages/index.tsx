@@ -33,9 +33,10 @@ const Home: NextPage = () => {
 
     return (
         <div className=" w-board h-board">
-            <div className="relative flex flex-wrap">
+            <Statistics moves={moves} score={score} />
+            <div className="relative flex flex-wrap mt-3">
                 {
-                    moves !== 0
+                    moves === 0
                         ? <HighScore />
                         : null
                 }
@@ -64,7 +65,6 @@ const Home: NextPage = () => {
                         : <span className="italic">An error occurred</span>
                 }
             </div>
-            <Statistics moves={moves} score={score} />
         </div>
     )
 }

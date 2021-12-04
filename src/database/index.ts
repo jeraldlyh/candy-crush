@@ -1,4 +1,4 @@
-import { initializeApp } from "firebase/app"
+import firebase from "firebase/app"
 import { getFirestore } from "firebase/firestore"
 
 
@@ -12,4 +12,6 @@ const firebaseConfig = {
     measurementId: process.env.NEXT_PUBLIC_MEASUREMENT_ID
 }
 
-const firestore = getFirestore()
+const firebaseApp = firebase.initializeApp(firebaseConfig)
+
+export default getFirestore(firebaseApp)
