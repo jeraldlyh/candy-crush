@@ -1,17 +1,18 @@
-import { BOARD_SIZE, CANDY_COLORS, getBlank } from "../constant"
+import React from "react"
+import { BOARD_SIZE, getBlank } from "../constant"
 
 /**
  * Checks for candies that are chained consecutively
  * @param chain Length of candies consecutively in a row/col
  * @param board Candy crush board
  */
-export const checkForLinkedCandies = (chain: number, board: object[]): boolean => {
+export const checkForLinkedCandies = (chain: number, board: object[], setScore: React.Dispatch<React.SetStateAction<number>>): boolean => {
     const maxBoardSize = BOARD_SIZE * BOARD_SIZE
     var foundMatch = false
 
     for (var i = 0; i < maxBoardSize; i++) {
-        checkForColumn(board, i, chain, maxBoardSize) ? foundMatch = true : null
-        checkForRow(board, i, chain) ? foundMatch = true : null
+        checkForColumn(board, i, chain, maxBoardSize, setScore) ? foundMatch = true : null
+        checkForRow(board, i, chain, setScore) ? foundMatch = true : null
     }
     return foundMatch
 }
@@ -24,7 +25,7 @@ export const checkForLinkedCandies = (chain: number, board: object[]): boolean =
  * @param chain Length of candies consecutively in a row/col
  * @param maxBoardSize Size of the whole board
  */
-const checkForColumn = (board: object[], index: number, chain: number, maxBoardSize: number): boolean => {
+const checkForColumn = (board: object[], index: number, chain: number, maxBoardSize: number, setScore: React.Dispatch<React.SetStateAction<number>>): boolean => {
     const invalidIndices = []
 
     for (var i = 0; i < BOARD_SIZE * (chain - 1); i++) {        // Last x rows will be invalid
@@ -38,7 +39,7 @@ const checkForColumn = (board: object[], index: number, chain: number, maxBoardS
         column.push(index + BOARD_SIZE * j)     // Multiply by j to obtain next row in the same column
     }
 
-    return validate(board, index, column)
+    return validate(board, index, column, setScore)
 }
 
 
@@ -49,7 +50,7 @@ const checkForColumn = (board: object[], index: number, chain: number, maxBoardS
  * @param index Current index in the board
  * @param chain Length of candies consecutively in a row/col
  */
-const checkForRow = (board: object[], index: number, chain: number): boolean => {
+const checkForRow = (board: object[], index: number, chain: number, setScore: React.Dispatch<React.SetStateAction<number>>): boolean => {
     const invalidIndices = []
     var power = 1
 
@@ -69,7 +70,7 @@ const checkForRow = (board: object[], index: number, chain: number): boolean => 
     for (var j = 1; j < chain; j++) {
         row.push(index + j)
     }
-    return validate(board, index, row)
+    return validate(board, index, row, setScore)
 }
 
 /**
@@ -78,11 +79,12 @@ const checkForRow = (board: object[], index: number, chain: number): boolean => 
  * @param index Current index in the board
  * @param rowColumn Consecutive indices to check if there's an actual match
  */
-const validate = (board: object[], index: number, rowColumn: number[]): boolean => {
+const validate = (board: object[], index: number, rowColumn: number[], setScore: React.Dispatch<React.SetStateAction<number>>): boolean => {
     const color = board[index]
 
     if (rowColumn.every(square => board[square] === color)) {
         rowColumn.forEach(square => board[square] = getBlank())
+        setScore(oldScore => oldScore + rowColumn.length * 50)
         return true
     }
     return false

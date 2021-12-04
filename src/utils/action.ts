@@ -11,7 +11,7 @@ export const dragStart = (e: React.DragEvent<HTMLImageElement>, setCurrentSquare
     setCurrentSquare(e.target as HTMLImageElement)
 }
 
-export const dragEnd = (e: React.DragEvent<HTMLImageElement>, currentSquare: HTMLImageElement | undefined, replacedSquare: HTMLImageElement | undefined, board: object[], setCurrentSquare: React.Dispatch<React.SetStateAction<HTMLImageElement | undefined>>, setReplacedSquare: React.Dispatch<React.SetStateAction<HTMLImageElement | undefined>>, setBoard: React.Dispatch<React.SetStateAction<object[]>>, setMoves: React.Dispatch<React.SetStateAction<number>>): void => {
+export const dragEnd = (e: React.DragEvent<HTMLImageElement>, currentSquare: HTMLImageElement | undefined, replacedSquare: HTMLImageElement | undefined, board: object[], setCurrentSquare: React.Dispatch<React.SetStateAction<HTMLImageElement | undefined>>, setReplacedSquare: React.Dispatch<React.SetStateAction<HTMLImageElement | undefined>>, setBoard: React.Dispatch<React.SetStateAction<object[]>>, setMoves: React.Dispatch<React.SetStateAction<number>>, setScore: React.Dispatch<React.SetStateAction<number>>): void => {
     if (!(currentSquare && replacedSquare)) return
 
     const currentSquareId = parseInt(currentSquare.getAttribute("data-id")!)
@@ -19,7 +19,7 @@ export const dragEnd = (e: React.DragEvent<HTMLImageElement>, currentSquare: HTM
     swapSquares(board, currentSquareId, replacedSquareId)
 
     if (isValidMove(currentSquareId, replacedSquareId) &&
-        (checkForLinkedCandies(5, board) || checkForLinkedCandies(4, board) || checkForLinkedCandies(3, board))
+        (checkForLinkedCandies(5, board, setScore) || checkForLinkedCandies(4, board, setScore) || checkForLinkedCandies(3, board, setScore))
     ) {                                                         // Reset state for next move
         setCurrentSquare(undefined)
         setReplacedSquare(undefined)

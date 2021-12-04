@@ -2,7 +2,7 @@ import type { NextPage } from "next"
 import Image from "next/image"
 import { useState, useEffect } from "react"
 import HighScore from "../components/highscore"
-import Statistics from "../components/menu"
+import Statistics from "../components/statistics"
 import { dragDrop, dragEnd, dragStart } from "../utils/action"
 import { createBoard, moveCandiesDown } from "../utils/board"
 import { checkForLinkedCandies } from "../utils/validate"
@@ -21,9 +21,9 @@ const Home: NextPage = () => {
 
     useEffect(() => {
         const timer = setInterval(() => {
-            checkForLinkedCandies(5, board)
-            checkForLinkedCandies(4, board)
-            checkForLinkedCandies(3, board)
+            checkForLinkedCandies(5, board, setScore)
+            checkForLinkedCandies(4, board, setScore)
+            checkForLinkedCandies(3, board, setScore)
             moveCandiesDown(board)
             setBoard([...board])            // Update current board with updated data called above
         }, 150)
@@ -55,7 +55,7 @@ const Home: NextPage = () => {
                                         onDragLeave={e => e.preventDefault()}
                                         onDragStart={e => dragStart(e, setCurrentSquare)}
                                         onDrop={e => dragDrop(e, setReplacedSquare)}
-                                        onDragEnd={e => dragEnd(e, currentSquare, replacedSquare, board, setCurrentSquare, setReplacedSquare, setBoard, setMoves)}       // Logic goes into here
+                                        onDragEnd={e => dragEnd(e, currentSquare, replacedSquare, board, setCurrentSquare, setReplacedSquare, setBoard, setMoves, setScore)}       // Logic goes into here
                                         alt={Object.keys(candyColor)[0]}
                                     />
                                 </div>
@@ -64,7 +64,7 @@ const Home: NextPage = () => {
                         : <span className="italic">An error occurred</span>
                 }
             </div>
-            <Statistics moves={moves} score={score} setBoard={setBoard} />
+            <Statistics moves={moves} score={score} />
         </div>
     )
 }
