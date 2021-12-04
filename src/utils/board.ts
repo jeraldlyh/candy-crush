@@ -1,12 +1,5 @@
-export const BOARD_SIZE: number = 9
-export const CANDY_COLORS: object[] = [
-    { "blue": "bg-blue-300" },
-    { "green": "bg-green-300" },
-    { "gray": "bg-gray-300" },
-    { "purple": "bg-purple-300" },
-    { "red": "bg-red-300" },
-    { "yellow": "bg-yellow-300" },
-]
+import { BOARD_SIZE, CANDY_COLORS } from "../constant"
+
 
 export const createBoard = (): object[] => {
     const randomBoard: object[] = []

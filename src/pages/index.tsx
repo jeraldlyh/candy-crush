@@ -36,10 +36,11 @@ const Home: NextPage = () => {
                 {
                     board && board.length !== 0
                         ? board.map((candyColor, index) => {
-
-                            return <img
+                            console.log(candyColor)
+                            return <Image
+                                src={Object.values(candyColor)[0]}
                                 key={index}
-                                className={`${Object.values(candyColor)} w-box h-box border border-black`}
+                                className="w-box h-box border border-black"
                                 data-id={index}
                                 draggable={true}
                                 onDragOver={e => e.preventDefault()}
@@ -48,6 +49,7 @@ const Home: NextPage = () => {
                                 onDragStart={e => dragStart(e, setCurrentSquare)}
                                 onDrop={e => dragDrop(e, setReplacedSquare)}
                                 onDragEnd={e => dragEnd(e, currentSquare, replacedSquare, board, setCurrentSquare, setReplacedSquare, setBoard)}       // Logic goes into here
+                                alt={Object.keys(candyColor)[0]}
                             />
                         })
                         : "idk"
