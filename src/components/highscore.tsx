@@ -1,8 +1,19 @@
-import { useState } from "react"
+import React, { useState } from "react"
+import { createUser } from "../utils/leaderboards"
 
 
-const HighScore: React.FC = () => {
+interface Props {
+    score: number,
+}
+
+const HighScore: React.FC<Props> = ({ score }) => {
     const [username, setUsername] = useState<string>("")
+
+    const handleSubmit = async (e: React.MouseEvent<HTMLElement>) => {
+        e.preventDefault()
+        await createUser(username, score)
+        // reset board
+    }
 
     return (
         <div className="absolute flex flex-col items-center justify-center w-full h-full bg-opacity-75 bg-gray-200 z-10 text-black">
@@ -38,7 +49,7 @@ const HighScore: React.FC = () => {
                     </label>
                 </div>
                 <div className="flex justify-around mt-2">
-                    <button className="hover:bg-green-400 p-2 rounded-md">Submit</button>
+                    <button className="hover:bg-green-400 p-2 rounded-md" onClick={handleSubmit}>Submit</button>
                     <button className="hover:bg-red-400 p-2 rounded-md">Cancel</button>
                 </div>
             </div>

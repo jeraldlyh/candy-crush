@@ -1,4 +1,4 @@
-import { BOARD_SIZE, CANDY_COLORS, getBlank } from "../constant"
+import { BOARD_SIZE, CANDY_COLORS, getBlank } from "../constants"
 
 
 export const createBoard = (): object[] => {

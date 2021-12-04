@@ -1,5 +1,5 @@
 import React from "react"
-import { BOARD_SIZE } from "../constant"
+import { BOARD_SIZE } from "../constants"
 import { checkForLinkedCandies } from "./validate"
 
 

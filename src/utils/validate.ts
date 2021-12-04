@@ -1,5 +1,5 @@
 import React from "react"
-import { BOARD_SIZE, getBlank } from "../constant"
+import { BOARD_SIZE, getBlank } from "../constants"
 
 /**
  * Checks for candies that are chained consecutively

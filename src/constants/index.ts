@@ -7,6 +7,7 @@ import PurpleCandy from "../public/purple-candy.png"
 import Blank from "../public/blank.png"
 
 
+export const BASE_URL = process.env.NODE_ENV === "development" ? "http://localhost:3000" : process.env.NEXT_PUBLIC_URL
 export const BOARD_SIZE: number = 9
 export const CANDY_COLORS: object[] = [
     { "blue": BlueCandy },
