@@ -16,7 +16,7 @@ module.exports = {
             height: {
                 "board": "35rem",
                 "box": "4.375rem",
-            }
+            },
         },
     },
     variants: {
