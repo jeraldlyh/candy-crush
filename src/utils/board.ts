@@ -14,7 +14,6 @@ export const createBoard = (): object[] => {
     for (var i = 0; i < BOARD_SIZE * BOARD_SIZE; i++) {
         randomBoard.push(getRandomColor())
     }
-
     return randomBoard
 }
 

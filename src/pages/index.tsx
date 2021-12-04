@@ -2,7 +2,7 @@ import classNames from "classnames"
 import type { NextPage } from "next"
 import Image from "next/image"
 import { useState, useEffect } from "react"
-import { onDrag, onDragEnd, onDragStart } from "../utils/action"
+import { dragDrop, dragEnd, dragStart } from "../utils/action"
 import { createBoard, moveCandiesDown } from "../utils/board"
 import { checkForLinkedCandies } from "../utils/validate"
 
@@ -10,8 +10,8 @@ import { checkForLinkedCandies } from "../utils/validate"
 const Home: NextPage = () => {
     const [board, setBoard] = useState<object[]>([])
     const [score, setScore] = useState(0)
-    const [currentSquare, setCurrentSquare] = useState({})
-    const [replacedSquare, setReplacedSquare] = useState({})
+    const [currentSquare, setCurrentSquare] = useState<HTMLImageElement>()
+    const [replacedSquare, setReplacedSquare] = useState<HTMLImageElement>()
 
     useEffect(() => {
         setBoard(createBoard())
@@ -42,6 +42,12 @@ const Home: NextPage = () => {
                                 className={`${Object.values(candyColor)} w-box h-box border border-black`}
                                 data-id={index}
                                 draggable={true}
+                                onDragOver={e => e.preventDefault()}
+                                onDragEnter={e => e.preventDefault()}
+                                onDragLeave={e => e.preventDefault()}
+                                onDragStart={e => dragStart(e, setCurrentSquare)}
+                                onDrop={e => dragDrop(e, setReplacedSquare)}
+                                onDragEnd={e => dragEnd(e, currentSquare, replacedSquare, board, setCurrentSquare, setReplacedSquare, setBoard)}       // Logic goes into here
                             />
                         })
                         : "idk"
