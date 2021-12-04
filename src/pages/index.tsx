@@ -2,11 +2,16 @@ import classNames from "classnames"
 import type { NextPage } from "next"
 import Image from "next/image"
 import { useState, useEffect } from "react"
-import { checkForLinkedCandies, createBoard, moveCandiesDown } from "../utils/board"
+import { onDrag, onDragEnd, onDragStart } from "../utils/action"
+import { createBoard, moveCandiesDown } from "../utils/board"
+import { checkForLinkedCandies } from "../utils/validate"
+
 
 const Home: NextPage = () => {
     const [board, setBoard] = useState<object[]>([])
     const [score, setScore] = useState(0)
+    const [currentSquare, setCurrentSquare] = useState({})
+    const [replacedSquare, setReplacedSquare] = useState({})
 
     useEffect(() => {
         setBoard(createBoard())
@@ -17,7 +22,7 @@ const Home: NextPage = () => {
             checkForLinkedCandies(3, board)
             moveCandiesDown(board)
             setBoard([...board])            // Update current board with updated data called above
-        }, 2000)
+        }, 150)
         return () => clearInterval(timer)
     }, [board])
 
@@ -32,10 +37,11 @@ const Home: NextPage = () => {
                     board && board.length !== 0
                         ? board.map((candyColor, index) => {
 
-                            return <div
+                            return <img
                                 key={index}
                                 className={`${Object.values(candyColor)} w-box h-box border border-black`}
-                            // alt={candyColor}
+                                data-id={index}
+                                draggable={true}
                             />
                         })
                         : "idk"
