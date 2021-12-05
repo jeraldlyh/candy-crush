@@ -4,15 +4,21 @@ import { createUser } from "../utils/leaderboards"
 
 interface Props {
     score: number,
+    resetBoard: () => void
 }
 
-const HighScore: React.FC<Props> = ({ score }) => {
+const HighScore: React.FC<Props> = ({ score, resetBoard }) => {
     const [username, setUsername] = useState<string>("")
 
     const handleSubmit = async (e: React.MouseEvent<HTMLElement>) => {
         e.preventDefault()
         await createUser(username, score)
-        // reset board
+        resetBoard()
+    }
+
+    const handleCancel = (e: React.MouseEvent<HTMLElement>) => {
+        e.preventDefault()
+        resetBoard()
     }
 
     return (
@@ -50,7 +56,7 @@ const HighScore: React.FC<Props> = ({ score }) => {
                 </div>
                 <div className="flex justify-around mt-2">
                     <button className="hover:bg-green-400 p-2 rounded-md" onClick={handleSubmit}>Submit</button>
-                    <button className="hover:bg-red-400 p-2 rounded-md">Cancel</button>
+                    <button className="hover:bg-red-400 p-2 rounded-md" onClick={handleCancel}>Cancel</button>
                 </div>
             </div>
         </div>

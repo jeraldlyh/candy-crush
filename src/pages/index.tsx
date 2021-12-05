@@ -32,6 +32,11 @@ const Home: NextPage = () => {
         return () => clearInterval(timer)
     }, [board])
 
+    const resetBoard = () => {
+        setMoves(10)
+        setScore(0)
+        setBoard(createBoard())
+    }
 
     return (
         <div className="flex flex-col h-full lg:flex-row justify-around items-center">
@@ -40,7 +45,7 @@ const Home: NextPage = () => {
                 <div className="relative flex flex-wrap mt-3">
                     {
                         moves === 0
-                            ? <HighScore score={score} />
+                            ? <HighScore score={score} resetBoard={resetBoard} />
                             : null
                     }
                     {
