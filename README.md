@@ -6,7 +6,7 @@ Candy Crush is a free-to-play match-three puzzle video [game](https://en.wikiped
 
 ## Deployment
 ```bash
-yarn add
+yarn install
 yarn dev
 ```
 
