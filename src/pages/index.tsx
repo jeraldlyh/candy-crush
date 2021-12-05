@@ -28,7 +28,7 @@ const Home: NextPage = () => {
             checkForLinkedCandies(3, board, setScore)
             moveCandiesDown(board)
             setBoard([...board])            // Update current board with updated data called above
-        }, 150)
+        }, 100)
         return () => clearInterval(timer)
     }, [board])
 
