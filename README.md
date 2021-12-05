@@ -1,4 +1,5 @@
-Candy Crush is a free-to-play match-three puzzle video game that can be found on other versions for iOS, Android, Windows. In this version, players are able to compete on the leaderboards with the highest score earned within 10 moves.
+# Candy Crush
+Candy Crush is a free-to-play match-three puzzle video [game](https://en.wikipedia.org/wiki/Candy_Crush_Saga) that can be found on other versions for iOS, Android, Windows. In this version, players are able to compete on the leaderboards with the highest score earned within 10 moves.
 
 ## Deployment
 ```bash
