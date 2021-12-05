@@ -11,12 +11,12 @@ const Statistics: React.FC<Props> = ({ moves, score }) => {
         <div className="flex flex-col w-full justify-center items-center mt-3">
             <div className="flex w-full items-center justify-around">
                 <div className="flex flex-col items-center justify-center">
-                    <span className="text-xl uppercase underline">Moves</span>
-                    <span>{moves}</span>
+                    <span className="lg:text-lg uppercase underline">Moves</span>
+                    <span className="font-semibold lg:text-xl">{moves}</span>
                 </div>
                 <div className="flex flex-col items-center justify-center">
-                    <span className="text-xl uppercase underline">Score</span>
-                    <span>{score}</span>
+                    <span className="lg:text-lg uppercase underline">Score</span>
+                    <span className="font-semibold lg:text-xl">{score}</span>
                 </div>
             </div>
         </div>
